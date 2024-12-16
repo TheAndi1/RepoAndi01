@@ -1,8 +1,6 @@
 from operator import index
 
-datei = None
-try: #leitet ExceptionListening ein
-    datei = open('day01_input.txt','r')
+with open('day01_input.txt','r') as datei: #Stichwort ContextManager, bewirkt hier, dass die Datei IMMER geschlossen wird, sobald der Context verlassen wir
 
     #for zeile in datei:
     #	print("Inhalt aus Datei: ")
@@ -30,7 +28,3 @@ try: #leitet ExceptionListening ein
             ausgabe = True
 
     print(counter)
-except FileNotFoundError as e:
-    print('You moron, give the right file')
-finally: #auch bei Exceptions kommt er hier vorbei
-    datei.close()
