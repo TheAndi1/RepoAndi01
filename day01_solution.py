@@ -1,14 +1,12 @@
 from operator import index
 from pathlib import Path
-import sys
 
 content = Path('day01_input.txt').read_text()
 #an dieser Stelle ist nicht mal mehr die Datei offen
 
-mapping = {
-    "(" : +1,
-    ")": -1,
-}
+print(content.count("(") - content.count(")")) #in diesem Fall guter OneLiner, aber er geht natürlich auch zweimal durch den Stream
+
+mapping = { "(" : +1, ")": -1 }
 counter = 0
 ausgabe = False
 for index, zeichen in enumerate(content):
