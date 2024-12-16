@@ -1,30 +1,21 @@
 from operator import index
+from pathlib import Path
 
-with open('day01_input.txt','r') as datei: #Stichwort ContextManager, bewirkt hier, dass die Datei IMMER geschlossen wird, sobald der Context verlassen wir
-
-    #for zeile in datei:
-    #	print("Inhalt aus Datei: ")
-    #	print(zeile)
-
-    #print(datei.read())
-
-    #print(len(datei.read()))
-    counter = 0
-    #position = 0
-    ausgabe = False
+content = Path('day01_input.txt').read_text()
+#an dieser Stelle ist nicht mal mehr die Datei offen
+counter = 0
+ausgabe = False
 
 
-    for index, zeichen in enumerate(datei.read()):
-        #position += 1
-        if zeichen == "(":
-            counter += 1
+for index, zeichen in enumerate(content):
+    if zeichen == "(":
+        counter += 1
 
-        elif zeichen == ")":
-            counter -= 1
+    elif zeichen == ")":
+        counter -= 1
 
-        if counter == -1 and ausgabe == False:
-            print(index+1)
-            #print(position)
-            ausgabe = True
+    if counter == -1 and ausgabe == False:
+        print(index+1)
+        ausgabe = True
 
-    print(counter)
+print(counter)
