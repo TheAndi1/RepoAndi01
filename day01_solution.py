@@ -1,31 +1,20 @@
 from operator import index
+from pathlib import Path
 
-datei = open('day01_input.txt','r')
+content = Path('day01_input.txt').read_text()
+#an dieser Stelle ist nicht mal mehr die Datei offen
 
-#for zeile in datei:
-#	print("Inhalt aus Datei: ")
-#	print(zeile)
+print(content.count("(") - content.count(")")) #in diesem Fall guter OneLiner, aber er geht natürlich auch zweimal durch den Stream
 
-#print(datei.read())
-
-#print(len(datei.read()))
+mapping = { "(" : +1, ")": -1 }
 counter = 0
-#position = 0
 ausgabe = False
+for index, zeichen in enumerate(content):
 
-
-for index, zeichen in enumerate(datei.read()):
-    #position += 1
-    if zeichen == "(":
-        counter += 1
-
-    elif zeichen == ")":
-        counter -= 1
+    counter += mapping[zeichen]
 
     if counter == -1 and ausgabe == False:
         print(index+1)
-        #print(position)
         ausgabe = True
 
 print(counter)
-datei.close()
