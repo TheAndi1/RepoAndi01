@@ -1,34 +1,20 @@
 from operator import index
+from pathlib import Path
 
-datei = None
-try: #leitet ExceptionListening ein
-    datei = open('day01_input.txt','r')
+content = Path('day01_input.txt').read_text()
+#an dieser Stelle ist nicht mal mehr die Datei offen
 
-    #for zeile in datei:
-    #	print("Inhalt aus Datei: ")
-    #	print(zeile)
+print(content.count("(") - content.count(")")) #in diesem Fall guter OneLiner, aber er geht natürlich auch zweimal durch den Stream
 
-    #print(datei.read())
+mapping = { "(" : +1, ")": -1 }
+counter = 0
+ausgabe = False
+for index, zeichen in enumerate(content):
 
-    #print(len(datei.read()))
-    counter = 0
-    #position = 0
-    ausgabe = False
+    counter += mapping[zeichen]
 
+    if counter == -1 and ausgabe == False:
+        print(index+1)
+        ausgabe = True
 
-    for index, zeichen in enumerate(datei.read()):
-        #position += 1
-        if zeichen == "(":
-            counter += 1
-
-        elif zeichen == ")":
-            counter -= 1
-
-        if counter == -1 and ausgabe == False:
-            print(index+1)
-            #print(position)
-            ausgabe = True
-
-    print(counter)
-finally: #auch bei Exceptions kommt er hier vorbei
-    datei.close()
+print(counter)
