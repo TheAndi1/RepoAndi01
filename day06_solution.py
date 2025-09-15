@@ -87,6 +87,6 @@ content = Path('day06_input.txt').read_text()
 process_text_input(content)
 
 
-assert(process_text_input("turn on 0,0 through 999,999")) == 1000000
-assert(process_text_input("toggle 0,0 through 999,0")) == 1000
-assert(process_text_input("turn off 499,499 through 500,500")) == 0
+assert process_text_input("turn on 0,0 through 999,999") == 1000000
+assert process_text_input("toggle 0,0 through 999,0") == 1000
+assert process_text_input("turn off 499,499 through 500,500") == 0
